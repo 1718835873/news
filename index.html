@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<title>张浩新闻</title>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<p class="mui-title">新闻资讯</p>
+		</header>
+		<nav>
+			<div id="app">
+				<div class="nav-bar">
+						<ul >
+							<li><a @click="handler(0)" href="top.html" target="myFrame" class="active item">头条</a></li>
+							<li><a @click="handler(1)" class="item" href="shehui.html" target="myFrame">社会</a></li>
+							<li><a @click="handler(2)" class="item" href="guonei.html" target="myFrame">国内</a></li>
+							<li><a @click="handler(3)" class="item" href="guoji.html" target="myFrame">国际</a></li>
+							<li><a @click="handler(4)" class="item" href="yule.html" target="myFrame">娱乐</a></li>
+							<li><a @click="handler(5)" class="item" href="tiyu.html" target="myFrame">体育</a></li>
+							<li><a @click="handler(6)" class="item" href="junshi.html" target="myFrame">军事</a></li>
+							<li><a @click="handler(7)" class="item" href="keji.html" target="myFrame">科技</a></li>
+							<li><a @click="handler(8)" class="item" href="caijing.html" target="myFrame">财经</a></li>
+							<li><a @click="handler(9)" class="item" href="shishang.html" target="myFrame">时尚</a></li>
+						</ul>
+					</div>
+				</nav>
+				<div class="content">
+					<iframe src="top.html" width="100%" height="100%"frameborder="0"  name="myFrame"></iframe>
+				</div>
+			</div>
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm=new Vue({
+				el:"#app",
+				methods:{
+					handler(index){
+						console.log(index)
+						let items=$(".item")
+						$("a").removeClass("active")
+						items.each((i,item)=>{
+							
+							if(i==index){
+								$("a").eq(i).addClass("active")
+							}
+						})
+					}
+				},
+			})
+		</script>
+	</body>
+</html>

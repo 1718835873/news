@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			li{
+				list-style: none;
+			}
+			.top-item{
+				margin: 10px 14px;
+				border-top: 1px solid #C0C0C0;
+			}
+			.top-item:last-child{
+				padding-bottom: 10px;
+				border-bottom: 1px solid #C0C0C0;
+			}
+			.top-container{
+				padding: 10px 0px 0px 0px;
+			}
+			.top-top{
+				display: flex;
+				flex-direction: row;
+			}
+			.top-top img{
+				width: 100%;
+				height: auto;
+			}
+			.left-img{
+				display: block;
+				vertical-align: top;
+				width: 40%;
+			}
+			.right-cont{
+				width: 60%;
+				margin-left: 10px;
+				font-size: 14px;
+			}
+			.right-cont p{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient:vertical;
+				 flex-direction: column;
+			}
+			.top-bottom{
+				overflow: hidden;
+			}
+			.top-bottom li{
+				float: left;
+				font-size: 12px;
+				color: #C0C0C0;
+				/* width: 80px; */
+				padding-right: 10px;
+				padding-top: 6px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="top">
+			<div class="top-area">
+				<div class="top-item" v-for="(item,index) in data">
+					<div class="top-container" @click="goto(item.url)">
+						<div class="top-top">
+							<div class="left-img">
+								<img :src="item.thumbnail_pic_s" >
+							</div>
+							<div class="right-cont">
+								<p>{{item.title}}</p>
+							</div>
+						</div>
+						<div class="top-bottom">
+							<ul>
+								<li>{{item.author_name}}</li>
+								<li>{{item.category}}</li>
+								<li>{{item.date}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				</div>
+		</div>
+
+		<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm=new Vue({
+				el:"#top",
+				data:{
+					data:[]
+				},
+				methods:{
+					goto(url){
+						window.location.href=url
+					}
+				},
+				created() {	
+					
+					$.ajax({
+						url:"./data/shehui.json",
+						success:res=>{
+							this.data=res.result.data
+						}
+					})
+				}
+			})
+		</script>
+	</body>
+</html>
